@@ -19,7 +19,7 @@ app.get('/categorias', async () => {
 
 	const selectData = await selectCategoriasAlfabetica(tableData);
 
-    return selectData;
+	return selectData;
 });
 
 app.get('/categorias/:id', async (req) => {
@@ -34,7 +34,7 @@ app.get('/categorias/:id', async (req) => {
 
 	const selectData = await selectBy(tableData);
 
-    return selectData;
+	return selectData;
 });
 
 app.get('/grupos', async () => {
@@ -45,7 +45,7 @@ app.get('/grupos', async () => {
 
 	const selectData = await select(tableData);
 
-    return selectData;
+	return selectData;
 });
 
 app.get('/tipos', async () => {
@@ -56,7 +56,7 @@ app.get('/tipos', async () => {
 
 	const selectData = await select(tableData);
 
-    return selectData;
+	return selectData;
 });
 
 app.get('/grupos-categorias', async () => {
@@ -67,7 +67,7 @@ app.get('/grupos-categorias', async () => {
 
 	const selectData = await select(tableData);
 
-    return selectData;
+	return selectData;
 });
 
 app.get('/entradas', async () => {
@@ -78,7 +78,7 @@ app.get('/entradas', async () => {
 
 	const selectData = await select(tableData);
 
-    return selectData;
+	return selectData;
 });
 
 app.get('/entradas/:month', async (req) => {
@@ -93,7 +93,7 @@ app.get('/entradas/:month', async (req) => {
 	};
 
 	const selectData = await selectByMonth(tableData);
-    return selectData;
+	return selectData;
 });
 
 app.get('/saidas/:month', async (req) => {
@@ -107,7 +107,7 @@ app.get('/saidas/:month', async (req) => {
 	};
 
 	const selectData = await selectByMonth(tableData);
-    return selectData;
+	return selectData;
 });
 
 app.get('/saida/:id', async (req) => {
@@ -122,7 +122,7 @@ app.get('/saida/:id', async (req) => {
 
 	const selectData = await selectBy(tableData);
 
-    return selectData;
+	return selectData;
 });
 
 app.get('/categorias/:month/porcentagem', async (req) => {
@@ -137,7 +137,7 @@ app.get('/categorias/:month/porcentagem', async (req) => {
 	};
 
 	const selectData = await selectCategoriasPercentage(tableData);
-    return selectData;
+	return selectData;
 });
 
 app.get('/entradas/:month/total', async (req) => {
@@ -152,7 +152,7 @@ app.get('/entradas/:month/total', async (req) => {
 	};
 
 	const selectData = await sumByMonth(tableData);
-    return selectData;
+	return selectData;
 });
 
 app.get('/saldo/:month/total', async (req) => {
@@ -167,7 +167,7 @@ app.get('/saldo/:month/total', async (req) => {
 	};
 
 	const selectData = await selectTotalSaldoByMonth(tableData);
-    return selectData;
+	return selectData;
 });
 
 app.get('/saidas', async () => {
@@ -178,7 +178,7 @@ app.get('/saidas', async () => {
 
 	const selectData = await select(tableData);
 
-    return selectData;
+	return selectData;
 });
 
 app.post('/entradas', async (req, reply) => {
