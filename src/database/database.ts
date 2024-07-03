@@ -103,17 +103,22 @@ export async function sumByMonth({ table, month, year } : FilterByMonthParams) {
 }
 
 export async function insert({ table, fields, values } : InsertParams) {
+
     const connection = await pool.connect();
 
     const fieldsList = fields?.join(", ");
 	
-    const valuesList = values?.map(value => typeof value === 'string' ? `"${value}"` : `${value}`).join(", ");
+    const valuesList = values?.map(value => typeof value === 'string' ? `'${value}'` : `${value}`).join(", ");
 
     let result;
 
+    console.log(`INSERT INTO ${table} (${fieldsList}) VALUES (${valuesList})`);
+
     try 
     {
+
         const query = await connection.query(`INSERT INTO ${table} (${fieldsList}) VALUES (${valuesList})`);
+
         const rowCount = query.rowCount === null ? 0 : query.rowCount;
 
         const inserted =  rowCount > 0 ? true : false;
@@ -133,12 +138,13 @@ export async function insert({ table, fields, values } : InsertParams) {
 }
 
 export async function updateById({ id, table, fields, values } : UpdateParams) {
+    
     const connection = await pool.connect();
 
     let queryExtension = '';
 
     for(let i = 0; i < fields.length; i++) {
-        const valueFormat = typeof values[i] === 'string' ? `"${values[i]}"` : `${values[i]}`;
+        const valueFormat = typeof values[i] === 'string' ? `'${values[i]}'` : `${values[i]}`;
         queryExtension += fields[i]+" = "+valueFormat+", ";
     }
 
@@ -159,6 +165,7 @@ export async function updateById({ id, table, fields, values } : UpdateParams) {
     } 
     catch(erro) 
     {
+        console.log(erro);
         result = false;
     }
 
