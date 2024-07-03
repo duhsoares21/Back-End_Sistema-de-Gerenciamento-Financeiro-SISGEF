@@ -1,1 +1,1 @@
-Essa é a API do SISGEF. Desenvolvida em NodeJS junto do Fastify a API disponibiliza todos os recursos do Sistema de Gerenciamento Financeiro no formato REST para ser utilizado pelo Front-End em React.
+Essa é a API do SISGEF. Desenvolvida em NodeJS junto do Fastify e da lib pg para conexão com o PostgreSQL. A API disponibiliza todos os recursos do SISGEF no formato REST para ser utilizado pelo Front-End em React. O código da API utiliza o banco de dados PostgreSQL, mas pode ser facilmente adaptado para MySQL ou outro SGBD.
