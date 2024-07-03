@@ -1,0 +1,1 @@
+Essa é a API do SISGEF. Desenvolvida em NodeJS junto do Fastify a API disponibiliza todos os recursos do Sistema de Gerenciamento Financeiro no formato REST para ser utilizado pelo Front-End em React.
