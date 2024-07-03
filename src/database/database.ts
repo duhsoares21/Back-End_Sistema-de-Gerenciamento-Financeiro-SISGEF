@@ -2,9 +2,8 @@ import { ResultSetHeader } from 'mysql2';
 import { FilterByMonthParams, FilterParams, InsertParams, SelectParams, UpdateParams, DeleteParams } from '../types/types'
 import pool from './connection';
 
-
 export async function selectAll({ table } : SelectParams) {
-	const connection = await pool.connect();
+    const connection = await pool.connect();
 
     const query = await connection.query(`SELECT * FROM ${table}`);
 
@@ -16,9 +15,9 @@ export async function selectAll({ table } : SelectParams) {
 }
 
 export async function select({ table, fields } : SelectParams) {
-	const connection = await pool.connect();
-
-	const fieldsList = fields?.join(", ");
+    const connection = await pool.connect();
+	
+    const fieldsList = fields?.join(", ");
 
     const query = await connection.query(`SELECT ${fieldsList} FROM ${table}`);
 
@@ -30,9 +29,9 @@ export async function select({ table, fields } : SelectParams) {
 }
 
 export async function selectCategoriasAlfabetica({ table, fields } : SelectParams) {
-	const connection = await pool.connect();
+    const connection = await pool.connect();
 
-	const fieldsList = fields?.join(", ");
+    const fieldsList = fields?.join(", ");
 
     const query = await connection.query(`SELECT ${fieldsList} FROM ${table} ORDER BY categoria ASC`);
 
@@ -44,7 +43,7 @@ export async function selectCategoriasAlfabetica({ table, fields } : SelectParam
 }
 
 export async function selectBy({ table, filter, filterValue } : FilterParams) {
-	const connection = await pool.connect();
+    const connection = await pool.connect();
 
     const query = await connection.query(`SELECT * FROM ${table} WHERE ${filter} = ${filterValue}`);
 
@@ -56,7 +55,7 @@ export async function selectBy({ table, filter, filterValue } : FilterParams) {
 }
 
 export async function selectByMonth({ table, month, year } : FilterByMonthParams) {
-	const connection = await pool.connect();
+    const connection = await pool.connect();
 
     const query = await connection.query(`SELECT * FROM ${table} WHERE EXTRACT(MONTH FROM data) = ${month} AND EXTRACT(YEAR FROM data) = ${year} ORDER BY id`);
 
@@ -92,7 +91,7 @@ export async function selectCategoriasPercentage({month, year} : FilterByMonthPa
 }
 
 export async function sumByMonth({ table, month, year } : FilterByMonthParams) {
-	const connection = await pool.connect();
+    const connection = await pool.connect();
 
     const query = await connection.query(`SELECT SUM(valor) as total FROM ${table} WHERE EXTRACT(MONTH FROM data) = ${month} AND EXTRACT(YEAR FROM data) = ${year}`);
 
@@ -104,9 +103,10 @@ export async function sumByMonth({ table, month, year } : FilterByMonthParams) {
 }
 
 export async function insert({ table, fields, values } : InsertParams) {
-	const connection = await pool.connect();
+    const connection = await pool.connect();
 
-	const fieldsList = fields?.join(", ");
+    const fieldsList = fields?.join(", ");
+	
     const valuesList = values?.map(value => typeof value === 'string' ? `"${value}"` : `${value}`).join(", ");
 
     let result;
@@ -133,7 +133,7 @@ export async function insert({ table, fields, values } : InsertParams) {
 }
 
 export async function updateById({ id, table, fields, values } : UpdateParams) {
-	const connection = await pool.connect();
+    const connection = await pool.connect();
 
     let queryExtension = '';
 
@@ -168,7 +168,7 @@ export async function updateById({ id, table, fields, values } : UpdateParams) {
 }
 
 export async function deleteById({ id, table } : DeleteParams) {
-	const connection = await pool.connect();
+    const connection = await pool.connect();
 
     let result; 
     
