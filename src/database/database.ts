@@ -112,11 +112,8 @@ export async function insert({ table, fields, values } : InsertParams) {
 
     let result;
 
-    console.log(`INSERT INTO ${table} (${fieldsList}) VALUES (${valuesList})`);
-
     try 
     {
-
         const query = await connection.query(`INSERT INTO ${table} (${fieldsList}) VALUES (${valuesList})`);
 
         const rowCount = query.rowCount === null ? 0 : query.rowCount;
