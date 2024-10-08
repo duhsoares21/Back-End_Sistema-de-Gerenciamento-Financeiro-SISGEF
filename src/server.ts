@@ -1,5 +1,6 @@
 import fastify from 'fastify';
 import cors from '@fastify/cors'
+import rateLimit from 'express-rate-limit';
 
 import { deleteById, insert, select, selectBy, selectByMonth, selectCategoriasAlfabetica, selectCategoriasPercentage, selectTotalSaldoByMonth, sumByMonth, updateById } from './database/database';
 import { FilterByMonthParams, FilterParams, InsertParams, SelectParams, monthType, entradaType, idType, saidaType, UpdateParams, DeleteParams, yearType } from './types/types';
@@ -10,6 +11,13 @@ import { env } from 'node:process';
 const app = fastify();
 
 app.register(cors, {});
+
+var limiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutos
+  max: 100, // Máximo de 100 requisições a cada windowMs
+});
+
+app.register(limiter);
 
 app.get('/categorias', async () => {
 	const tableData:SelectParams = {
